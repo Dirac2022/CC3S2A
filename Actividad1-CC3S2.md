@@ -88,8 +88,16 @@ Lee atentamente el texto proporcionado (*Lectura 2*) y analiza los siguientes te
 Responde en equipo las siguientes preguntas con base en la lectura:
 
 1. **¿Qué significa "desplazar a la izquierda" en el contexto de DevSecOps y por qué es importante?**  
-2. **Explica cómo IaC mejora la consistencia y escalabilidad en la gestión de infraestructuras.**  
+> Desplazar a la izquierda en DevSecOps significa integrar la seguridad desde el inicio del ciclo de desarrollo en lugar de añadirla al final, para así descartar vulnerabilidades tempranas
+
+
+2. **Explica cómo IaC mejora la consistencia y escalabilidad en la gestión de infraestructuras.**
+> Los principios de reproducibilidad e idempotencia mejoran la consistencia, la composabilidad y evaluación controlada mejoran la escalabilidad en la gestión de infraestructuras.
+
 3. **¿Cuál es la diferencia entre monitoreo y observabilidad? ¿Por qué es crucial la observabilidad en sistemas complejos?**  
+> El monitoreo recopila métricas del sistema (uso de CPU, memoria, latencia de respuestas, tasa de errores), mientras que la observabilidad cuenta con un enfoque completo de monitoreo, registro de logs y trazabilidad. La observabilidad  es indispensable para detectar problemas antes de que afecten a los usuarios finales.
+
+
 4. **¿Cómo puede la experiencia del desarrollador impactar el éxito de DevOps en una organización?**  
 5. **Describe cómo InnerSource puede ayudar a reducir silos dentro de una organización.**  
 6. **¿Qué rol juega la ingeniería de plataformas en mejorar la eficiencia y la experiencia del desarrollador?**  
