@@ -62,7 +62,7 @@ Comprender los conceptos clave y la importancia de **DevSecOps**, **Infraestruct
 Lee atentamente el texto proporcionado (*Lectura 2*) y analiza los siguientes temas:
 
 - **DevSecOps**: Integración de la seguridad en el ciclo de vida del desarrollo.  
->
+>DevSecOps propone integrar herramientas y prácticas de seguridad desde el inicio, realizando análisis de vulnerabilidades, pruebas de penetración y revisiones de código de forma automatizada en cada fase del pipeline de CI/CD
 
 - **Infraestructura como Código (IaC)**: Automatización y gestión de infraestructura mediante código.  
 >Se basa en la idea que toda la infraestructura debe poder reproducirse de forma consistente en distintos entornos (desarrollo, pruebas, producción). Los principios fundamentales son
@@ -72,10 +72,14 @@ Lee atentamente el texto proporcionado (*Lectura 2*) y analiza los siguientes te
 >- Evolución controlada: Versionar cada cambio en los archivos de configuración, facilitando rollbacks y auditorías.
 
 - **Observabilidad**: Un enfoque avanzado para monitorear y comprender el estado de los sistemas.  
->
+> La observabilidad combina tres pilares principales:
+	- Monitoreo: recolección de métricas (CPU, memoria, latencia, tasa de errores) para evaluar el estado de la aplicación.
+	- Logging: Para identificar anomalías y comportamientos inesperados
+	- Trazabilidad: Tener un rastro de una petición a través de distintos microservicios o componentes,
+
 
 - **Experiencia del desarrollador**: Cómo mejorar la satisfacción y productividad de los desarrolladores dentro de un equipo DevOps. 
->
+> DevOps fomenta un ecosistema de colaboración entre desarrolladores. Esta integración no solo optimiza los procesos técnicos sino que también impulsa una cultura de responsabilidad compartida y mejora continua en las organizaciones.
 
 
 - **InnerSource**: Adopción de prácticas de código abierto dentro de una organización.  
@@ -90,18 +94,23 @@ Responde en equipo las siguientes preguntas con base en la lectura:
 1. **¿Qué significa "desplazar a la izquierda" en el contexto de DevSecOps y por qué es importante?**  
 > Desplazar a la izquierda en DevSecOps significa integrar la seguridad desde el inicio del ciclo de desarrollo en lugar de añadirla al final, para así descartar vulnerabilidades tempranas
 
-
-2. **Explica cómo IaC mejora la consistencia y escalabilidad en la gestión de infraestructuras.**
+	
+1. **Explica cómo IaC mejora la consistencia y escalabilidad en la gestión de infraestructuras.**
 > Los principios de reproducibilidad e idempotencia mejoran la consistencia, la composabilidad y evaluación controlada mejoran la escalabilidad en la gestión de infraestructuras.
 
 3. **¿Cuál es la diferencia entre monitoreo y observabilidad? ¿Por qué es crucial la observabilidad en sistemas complejos?**  
-> El monitoreo recopila métricas del sistema (uso de CPU, memoria, latencia de respuestas, tasa de errores), mientras que la observabilidad cuenta con un enfoque completo de monitoreo, registro de logs y trazabilidad. La observabilidad  es indispensable para detectar problemas antes de que afecten a los usuarios finales.
+> El monitoreo recopila métricas del sistema (uso de CPU, memoria, latencia de respuestas, tasa de errores), mientras que la observabilidad cuenta con un enfoque completo de monitoreo, registro de logs y trazabilidad.
 
 
 4. **¿Cómo puede la experiencia del desarrollador impactar el éxito de DevOps en una organización?**  
-5. **Describe cómo InnerSource puede ayudar a reducir silos dentro de una organización.**  
-6. **¿Qué rol juega la ingeniería de plataformas en mejorar la eficiencia y la experiencia del desarrollador?**  
+> Desarrolladores experimentados podrían detectar tareas repetitivas y vulnerables al error, estas tareas podrían optimizarlas mediante la adopción de DevOps como marco de trabajo. 
 
+
+5. **Describe cómo InnerSource puede ayudar a reducir silos dentro de una organización.**
+> InnerSource -al ser una metodología que aplica las mejores prácticas usadas en el desarrollo de código abierto- promueve la transparencia y colaboración entre diferentes equipos, permitiendo la reutilización de código y fomentando la innovación.  
+
+6. **¿Qué rol juega la ingeniería de plataformas en mejorar la eficiencia y la experiencia del desarrollador?**  
+> La ingeniería de plataformas facilitan el desarrollo y despliegue de software, esto reduce la complejidad de tareas y hace que los desarrolladores sean más eficientes, ya que elimina el error en tareas repetitivas.
 ---
 
 ### Indicaciones para trabajo grupal
