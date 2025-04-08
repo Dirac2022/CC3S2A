@@ -198,9 +198,22 @@ Por ejemplo, también puede mejorar la perspectiva de la siguiente manera:
 $ git log --graph --pretty=format:'%x09 %h %ar ("%an") %s'
 ```
 
-	**Pregunta**: ¿Cual es la salida de este comando?
+**Pregunta**: ¿Cuál es la salida de este comando?
 
 ![[Pasted image 20250402084911.png]]
+
+----
+ 🖋️ **`--pretty=format:'...'`**
+
+Permite personalizar cómo se ve cada línea del log. Veamos qué hay dentro del `format`:
+
+- **`%x09`**: Imprime un **tabulador horizontal** (es equivalente a `\t`).
+- **`%h`**: Muestra el **hash abreviado del commit** (por ejemplo, `c2cced5`).
+- **`%ar`**: Indica **cuánto tiempo ha pasado** desde que se hizo el commit (por ejemplo, `33 minutes ago`).
+- **`"%an"`**: Imprime el **nombre del autor** del commit entre comillas.
+- **`%s`**: Muestra el **mensaje del commit** (por ejemplo, `Initial commit with README.md`).
+
+---
 
 **Pregunta**: Intentemos el comando `git log` en este ejercicio (puedes realizar otra cosa como colocar las cosas en español). Primero, actualiza el archivo `README.md` y crea un nuevo archivo `CONTRIBUTING.md`:
 
@@ -219,6 +232,9 @@ $ git add .
 $ git commit –m "Add main.py"
 ```
 
+![[Pasted image 20250402134240.png]]
+
+
 Cuando se confirme en el *log* que está correctamente registrado, está hecho:
 
 ```bash
@@ -228,6 +244,9 @@ $ git log --oneline
 b641640 Set up the repository base documentation
 a16e562 Initial commit with README.md
 ```
+
+![[Pasted image 20250402134323.png]]
+
 
 En esencia, el comando `git log` es una herramienta vital para cualquier desarrollador. Te ayuda a navegar fácilmente a través del historial de tu código, ya sea que estés buscando un cambio específico o simplemente revisando el trabajo anterior.
 
@@ -253,6 +272,9 @@ Puedes crear una nueva *rama* con el comando `git branch <branch name>`. Este co
 $ git branch feature/new-feature
 ```
 
+![[Pasted image 20250406220740.png]]
+
+
 Si creas una nueva *rama*, puedes construir una línea con un historial diferente y agregar *commits* a esa *rama*.
 
 Las convenciones de nombres de *ramas* son importantes para la comunicación. Un estándar comúnmente utilizado es anteponer el nombre de la *rama* con `feature/`, `bugfix/` o `hotfix/`, seguido de una breve descripción. Esto facilita que cualquiera entienda el propósito de la *branch* de un vistazo.
@@ -267,6 +289,7 @@ $ git branch <new-branch-name> <base-branch-name>
 $ git branch <new-branch-name> <commit-hash>
 ```
 
+![[Pasted image 20250407110534.png]]
 #### git checkout/git switch: Cambiar entre ramas
 
 En tu flujo de trabajo diario, a menudo necesitarás cambiar de una *rama* a otra, especialmente cuando trabajas en múltiples características o corrigiendo errores. Cuando hayas comenzado a trabajar en múltiples *ramas*, volverse consciente de la *branch* en la que estás activamente se vuelve fundamental. En Git, el término *HEAD* se refiere a la punta de la *rama* con la que estás trabajando activamente.
@@ -277,6 +300,8 @@ Cambiar tu *rama* de trabajo actual se conoce como cambiar a una *rama*. El coma
 // Cambiar a la rama 'feature/new-feature'
 $ git checkout feature/new-feature
 ```
+
+![[Pasted image 20250407110608.png]]
 
 Esta operación cambia la posición de HEAD, la punta de la *rama*, a una *rama* llamada `feature/new-feature`:
 
@@ -299,6 +324,8 @@ $ git branch feature/login develop
 $ git checkout feature/login
 ```
 
+![[Pasted image 20250407110704.png]]
+
 #### Crear una rama desde un commit específico
 ```bash
 // Verifica el historial de commits para identificar el commit específico
@@ -311,12 +338,15 @@ $ git branch hotfix/bugfix abc1234
 $ git checkout hotfix/bugfix
 ```
 
+![[Pasted image 20250407110841.png]]
+
 Las versiones recientes de Git también ofrecen el comando `git switch`, que proporciona una forma más intuitiva de cambiar *ramas*:
 
 ```bash
 // Cambiar a la rama 'feature/new-feature'
 $ git switch feature/new-feature
 ```
+![[Pasted image 20250407110914.png]]
 
 A veces, puede resultar eficiente crear una nueva *rama* y cambiar a ella inmediatamente. Git proporciona un comando abreviado para esto, que combina la funcionalidad de `git branch` y `git checkout` o `git switch`.
 
@@ -326,6 +356,8 @@ Para crear una nueva *rama* y cambiar a ella en un solo paso, puedes usar el com
 // Crear y cambiar a una nueva rama
 $ git checkout -b feature/another-new-feature
 ```
+
+![[Pasted image 20250407111002.png]]
 
 Esto es equivalente a ejecutar lo siguiente:
 
@@ -353,6 +385,8 @@ $ git checkout main
 $ git merge feature/new-feature
 ```
 
+![[Pasted image 20250407120446.png]]
+
 La fusión te permite fusionar líneas con diferentes historiales. La fusión puede ser una operación sencilla, pero también puede complicarse si hay conflictos entre las *ramas*. 
 
 En tales casos, Git requerirá intervención manual para resolver los conflictos. 
@@ -365,12 +399,21 @@ Una vez que una *rama* ha sido fusionada con éxito y ya no es necesaria, se pue
 $ git branch -d feature/new-feature
 ```
 
+![[Pasted image 20250407120706.png]]
+
 #### Preguntas
 
 - ¿Cómo te ha ayudado Git a mantener un historial claro y organizado de tus cambios?  
+> Como cada commit tiene un identificador y un mensaje descriptivo y además git me permite crear ramas para bifurcar el flujo de trabajo, esto me permite mantener un orden y una buena estructura. Además con `git log` puedo ver el historial de manera clara, detalla y/o concisa dependiendo de los argumentos que le de al comando `git log` ya que es muy flexible.
+
 - ¿Qué beneficios ves en el uso de ramas para desarrollar nuevas características o corregir errores?  
+> Me es útil para llevar un orden al momento de desarrollar un software medianamente complejo, o cuando trabajo en equipo en donde a cada colaborador le toca una tarea, entonces las ramas ayudan a separar funciones o tareas.
+
 - Realiza una revisión final del historial de commits para asegurarte de que todos los cambios se han registrado correctamente.  
+> ![[Pasted image 20250407121559.png]]
+
 - Revisa el uso de ramas y merges para ver cómo Git maneja múltiples líneas de desarrollo.
+> ![[Pasted image 20250407121707.png]]
 
 #### Ejercicios
 
@@ -382,11 +425,13 @@ $ git branch -d feature/new-feature
 
 1. **Crear una nueva rama para una característica:**
    - Crea una nueva rama llamada `feature/advanced-feature` desde la rama `main`:
+> [!info] Primero cambie el nombre de mi rama principal de `master` a `main`
+> `git branch -m master main`
 
-     ```bash
-     $ git branch feature/advanced-feature
-     $ git checkout feature/advanced-feature
-     ```
+```bash
+$ git branch feature/advanced-feature
+$ git checkout feature/advanced-feature
+```
 
 2. **Modificar archivos en la nueva rama:**
    - Edita el archivo `main.py` para incluir una función adicional:
@@ -402,6 +447,9 @@ $ git branch -d feature/new-feature
      $ git add main.py
      $ git commit -m "Add greet function in advanced feature"
      ```
+
+> ![[Pasted image 20250407123232.png]]
+
 
 3. **Simular un desarrollo paralelo en la rama main:**
    - Cambia de nuevo a la rama `main`:
@@ -420,6 +468,9 @@ $ git branch -d feature/new-feature
      $ git commit -m "Update main.py message in main branch"
      ```
 
+> ![[Pasted image 20250407123539.png]]
+
+
 4. **Intentar fusionar la rama feature/advanced-feature en main:**
    - Fusiona la rama `feature/advanced-feature` en `main`:
 
@@ -429,12 +480,26 @@ $ git branch -d feature/new-feature
 
 5. **Resolver el conflicto de fusión:**
    - Git generará un conflicto en `main.py`. Abre el archivo y resuelve el conflicto manualmente, eligiendo cómo combinar las dos versiones.
+> ``` python
+> print('Hello world - updated in main')
+>
+> def greet():
+>    print("Hello from advanced feature")
+>
+> greet()
+> ```
+
+
    - Después de resolver el conflicto, añade el archivo resuelto y completa la fusión:
 
      ```bash
      $ git add main.py
      $ git commit -m "Resolve merge conflict between main and feature/advanced-feature"
      ```
+
+> Resultado: 
+> ![[Pasted image 20250407124549.png]]
+
 
 6. **Eliminar la rama fusionada:**
    - Una vez que hayas fusionado con éxito y resuelto los conflictos, elimina la rama `feature/advanced-feature`:
@@ -443,6 +508,8 @@ $ git branch -d feature/new-feature
      $ git branch -d feature/advanced-feature
      ```
 
+> Ya no aparece el nombre de la rama eliminada pero si el commit
+> ![[Pasted image 20250407124753.png]]
 
 #### Ejercicio 2: Exploración y manipulación del historial de commits
 
@@ -458,25 +525,61 @@ $ git branch -d feature/new-feature
      ```
    - Examina las diferencias introducidas en cada commit. ¿Qué cambios fueron realizados en cada uno?
 
+> ![[Pasted image 20250407130937.png]]
+> ![[Pasted image 20250407131009.png]]
+
+> **Inicio**
+> - **c2cced5**: Creamos el archivo README.md, no tuvo más modificaciones
+> - **c2d4836**: Creamos el archivo CONTRIBUTING.md y modificamos el archivo README.md
+> - b10676a: Creamos el archivo main.py
+> - **ac23cbb**: Modificamos el archivo main.py (desde rama advanced feature)
+> - **e6c3510**: Modificamos el archivo main.py (desde rama main)
+> - **56b57ba**: Al intentar hace merge entre main y advanced feature surgió un conflicto, este ultimo commit fue para resolverlo.
+> **Fin**
+
 2. **Filtrar commits por autor:**
    - Usa el siguiente comando para mostrar solo los commits realizados por un autor específico:
-
-
 
      ```bash
      $ git log --author="TuNombre"
      ```
 
+> ![[Pasted image 20250407131101.png]]
+
+
 3. **Revertir un commit:**
    - Imagina que el commit más reciente en `main.py` no debería haberse hecho. Usa `git revert` para revertir ese commit:
 
-     ```bash
-     $ git revert HEAD
-     ```
+> ```python
+>print('Hello world - updated in main')
+>
+>def greet():
+ >   print("Hello from advanced feature")
+>    
+>greet()
+>
+>print("This should not be in the main branch")
+>```
+
+> ![[Pasted image 20250407131758.png]]
+
+ ```bash
+      $ git revert HEAD
+```
+   > ![[Pasted image 20250407132056.png]]
+   
    - Verifica que el commit de reversión ha sido añadido correctamente al historial.
+
+> Lo que hizo `git revert HEAD` fue crear un nuevo commit `d3a43b0` deshaciendo los cambios que se hicieron en el commit anterior, pero no elimino el commit `089e5ea` del historial
+> ![[Pasted image 20250407132214.png]]
 
 4. **Rebase interactivo:**
    - Realiza un rebase interactivo para combinar varios commits en uno solo. Esto es útil para limpiar el historial de commits antes de una fusión.
+
+> He agregado 3 cambios al archivo `main.py`
+> ![[Pasted image 20250407142150.png]]
+
+
    - Usa el siguiente comando para empezar el rebase interactivo:
 
 ```bash
@@ -484,14 +587,33 @@ $ git branch -d feature/new-feature
 ```
    - En el editor que se abre, combina los últimos tres commits en uno solo utilizando la opción `squash`.
 
+> Combinaré los tres ultimos commits tomando el primero `41f5e69` como base
+>```
+pick 41f5e69 Update main.py in main branch first change
+squash a88c49e Update main.py in main branch second change
+squash 1e4aeaa Update main.py in main branch third change
+>
+># Rebase d3a43b0..1e4aeaa onto d3a43b0 (3 commands)
+>#
+>``` 
+>Luego para el mensaje del nuevo commit mantendré los mensajes por defecto de cada commit
+>
+> Al imprimir nuevamente los 3 últimos commits vemos que ahora el ultimo commit es uno nuevo `d8c2009` que ha combinado los 3 últimos anteriores `1e4aeaa`, `à88c49e` y `41f5e69`. Y los dos últimos corresponden a los commits antes de empezar las modificaciones para este ejemplo con `git rebase`.
+> ![[Pasted image 20250407143351.png]]
+
+
+
 5. **Visualización gráfica del historial:**
    - Usa el siguiente comando para ver una representación gráfica del historial de commits:
 
      ```bash
      $ git log --graph --oneline --all
      ```
-   - Reflexiona sobre cómo el historial de tu proyecto se visualiza en este formato. ¿Qué información adicional puedes inferir?
 
+> ![[Pasted image 20250407143618.png]]
+   
+   - Reflexiona sobre cómo el historial de tu proyecto se visualiza en este formato. ¿Qué información adicional puedes inferir?
+> La información adicional que recibo son los commits detallados por rama (al añadir `--all`), cosa que no obtengo con `git log --graph --online`. Además el uso de `--graph` es util para ver los *merges* que se han hecho y`--online` para obtener la información de cada commit en una sola línea. 
 
 #### Ejercicio 3: Creación y gestión de ramas desde commits específicos
 
@@ -505,12 +627,17 @@ $ git branch -d feature/new-feature
      ```bash
      $ git log --oneline
      ```
+> ![[Pasted image 20250407144917.png]]   
+   
    - Crea una nueva rama `bugfix/rollback-feature` desde ese commit:
 
      ```bash
      $ git branch bugfix/rollback-feature <commit-hash>
      $ git checkout bugfix/rollback-feature
      ```
+> Hare uso del commit `ac23cbb` donde se agrego el método  `greet()`
+> ![[Pasted image 20250407145121.png]]
+
 
 2. **Modificar y confirmar cambios en la nueva rama:**
    - Realiza algunas modificaciones en `main.py` que simulen una corrección de errores:
@@ -525,6 +652,9 @@ $ git branch -d feature/new-feature
      $ git commit -m "Fix bug in rollback feature"
      ```
 
+> ![[Pasted image 20250407145738.png]]
+
+
 3. **Fusionar los cambios en la rama principal:**
    - Cambia de nuevo a la rama `main` y fusiona la rama `bugfix/rollback-feature`:
 
@@ -532,6 +662,8 @@ $ git branch -d feature/new-feature
      $ git checkout main
      $ git merge bugfix/rollback-feature
      ```
+> ![[Pasted image 20250407150617.png]]
+
 
 4. **Explorar el historial después de la fusión:**
    - Usa `git log` y `git log --graph` para ver cómo se ha integrado el commit en el historial:
@@ -539,6 +671,7 @@ $ git branch -d feature/new-feature
      ```bash
      $ git log --graph --oneline
      ```
+> ![[Pasted image 20250407160154.png]]
 
 5. **Eliminar la rama bugfix/rollback-feature:**
    - Una vez fusionados los cambios, elimina la rama `bugfix/rollback-feature`:
@@ -546,7 +679,7 @@ $ git branch -d feature/new-feature
      ```bash
      $ git branch -d bugfix/rollback-feature
      ```
-
+> ![[Pasted image 20250407160431.png]]
 
 #### Ejercicio 4: Manipulación y restauración de commits con git reset y git restore
 
@@ -566,6 +699,8 @@ $ git branch -d feature/new-feature
      $ git commit -m "Introduce a change to be reset"
      ```
 
+> ![[Pasted image 20250407170055.png]]
+
 2. **Usar git reset para deshacer el commit:**
    - Deshaz el commit utilizando `git reset` para volver al estado anterior:
 
@@ -574,6 +709,14 @@ $ git branch -d feature/new-feature
      ```
    - Verifica que el commit ha sido eliminado del historial y que el archivo ha vuelto a su estado anterior.
 
+> El ultimo commit `ac6380a` se ha eliminado
+> ![[Pasted image 20250407170137.png]]
+   
+> [!tip] `git reset --hard HEAD~1`
+> - `HEAD~1` : el commit anterior al actual
+> - `--hard` : borra todo: *stagin area*, *working directory*, y mueve el HEAD al commit anterior.
+> - Es como si el ultimo commit **jamás hubiera existido**.
+
 3. **Usar git restore para deshacer cambios no confirmados:**
    - Realiza un cambio en `README.md` y no lo confirmes:
 
@@ -581,13 +724,19 @@ $ git branch -d feature/new-feature
      $ echo "Another line in README" >> README.md
      $ git status
      ```
+
+> ![[Pasted image 20250407170431.png]]
+
    - Usa `git restore` para deshacer este cambio no confirmado:
 
      ```bash
      $ git restore README.md
      ```
-   - Verifica que el cambio no confirmado ha sido revertido.
+> ![[Pasted image 20250407170557.png]]
 
+   
+- Verifica que el cambio no confirmado ha sido revertido.
+> ![[Pasted image 20250407170628.png]]
 
 #### Ejercicio 5: Trabajo colaborativo y manejo de Pull Requests
 
@@ -601,6 +750,9 @@ $ git branch -d feature/new-feature
      ```bash
      $ git clone <URL-del-repositorio>
      ```
+>  Antes de continuar con la instrucción 2 vamos a realizar el primer commit y push
+>  ![[Pasted image 20250407174541.png]]
+> ![[Pasted image 20250407174714.png]]
 
 2. **Crear una nueva rama para desarrollo de una característica:**
    - En tu repositorio local, crea una nueva rama `feature/team-feature`:
@@ -609,6 +761,7 @@ $ git branch -d feature/new-feature
      $ git branch feature/team-feature
      $ git checkout feature/team-feature
      ```
+> ![[Pasted image 20250407174846.png]]
 
 3. **Realizar cambios y enviar la rama al repositorio remoto:**
    - Realiza cambios en los archivos del proyecto y confírmalos:
@@ -618,19 +771,35 @@ $ git branch -d feature/new-feature
      $ git add .
      $ git commit -m "Add collaboration script"
      ```
+> ![[Pasted image 20250407175020.png]]
+
+
    - Envía la rama al repositorio remoto:
 
      ```bash
      $ git push origin feature/team-feature
      ```
 
+> ![[Pasted image 20250407180342.png]]
+
+
+> [!tip] `origin`
+> Es el **nombre por defecto del repositorio remoto** cuando haces `git clone`.
+
 4. **Abrir un Pull Request:**
    - Abre un Pull Request (PR) en la plataforma remota (GitHub/GitLab) para fusionar `feature/team-feature` con la rama `main`.
+
    - Añade una descripción detallada del PR, explicando los cambios realizados y su propósito.
+
+![[Pasted image 20250407184128.png]]
 
 5. **Revisar y fusionar el Pull Request:**
    - Simula la revisión de código, comenta en el PR y realiza cualquier cambio necesario basado en la retroalimentación.
    - Una vez aprobado, fusiona el PR en la rama `main`.
+
+
+> Después de hacer el pull and merge en github me da la opción de ahí mismo borrar la rama `feature/team-feature`
+> ![[Pasted image 20250407184442.png]]
 
 6. **Eliminar la rama remota y local:**
    - Después de la fusión, elimina la rama tanto local como remotamente:
@@ -639,6 +808,9 @@ $ git branch -d feature/new-feature
      $ git branch -d feature/team-feature
      $ git push origin --delete feature/team-feature
      ```
+
+> ![[Pasted image 20250407184845.png]]
+
 
 #### Ejercicio 6: Cherry-Picking y Git Stash
 
@@ -654,6 +826,9 @@ $ git branch -d feature/new-feature
      $ git add main.py
      $ git commit -m "Add cherry-pick example"
      ```
+> ![[Pasted image 20250407185440.png]]
+
+
 
 2. **Crear una nueva rama y aplicar el commit específico:**
    - Crea una nueva rama `feature/cherry-pick` y aplícale el commit específico:
@@ -664,6 +839,13 @@ $ git branch -d feature/new-feature
      $ git cherry-pick <commit-hash>
      ```
 
+> Realizaré el `cherry-pick` para el commit `1e7c03b`
+> ![[Pasted image 20250407190805.png]]
+> ![[Pasted image 20250407190830.png]]
+> ![[Pasted image 20250407190842.png]]
+> ![[Pasted image 20250407191215.png]]
+
+
 3. **Guardar temporalmente cambios no confirmados:**
    - Realiza algunos cambios en `main.py` pero no los confirmes:
 
@@ -672,10 +854,11 @@ $ git branch -d feature/new-feature
      $ git status
      ```
    - Guarda temporalmente estos cambios utilizando `git stash`:
-
      ```bash
      $ git stash
      ```
+> ![[Pasted image 20250407192350.png]]
+
 
 4. **Aplicar los cambios guardados:**
    - Realiza otros cambios y confírmalos si es necesario.
@@ -684,6 +867,12 @@ $ git branch -d feature/new-feature
 ```bash
 $ git stash pop   
 ```
+> ![[Pasted image 20250407192425.png]]
+> ![[Pasted image 20250407192448.png]]
+> ![[Pasted image 20250407192603.png]]
+> 
+
 
 5. **Revisar el historial y confirmar la correcta aplicación de los cambios:**
    - Usa `git log` para revisar el historial de commits y verificar que todos los cambios se han aplicado correctamente.
+> ![[Pasted image 20250407192845.png]]
