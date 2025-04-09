@@ -51,13 +51,13 @@ Esta actividad se orienta a estudiantes de desarrollo de software que deseen ent
 >- **Escalabilidad horizontal** Permite agregar servidores al clúster bajo demanda, gestionando tráfico creciente sin reiniciar servicios.
 
 
-
-
-
    - (b) Describe un ejemplo práctico de cómo un desarrollador de software puede beneficiarse del uso de load balancers para una aplicación web.
-   > 
+   > Por ejemplo, un desarrollador lanza una aplicación web para reserva de paquetes turísticos tipo *Despegar.com*. Al crecer el número de usuarios el servidor se satura y comienza a fallar. El *load balancer* ayudaría en
+   1. Organizar y distribuir el tráfico entre servicios y peticiones
+ >  2.  Posibilidad de escalar servicios individualmente
+ >  3. Las solicitudes entrantes pueden enrutarse a los contenedores correctos según el path 
 
-3. **Elastic computing**  
+4. **Elastic computing**  
    - (a) Define con tus propias palabras el concepto de Elastic Computing.  
 > Es la capacidad que tiene una infraestructura de adaptarse a la demanda que recibe, es decir, ajusta sus recursos dependiendo de la carga de trabajo. Es una característica de la computación en la nube.
 
