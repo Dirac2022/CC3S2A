@@ -13,16 +13,19 @@ Dentro de Git, las fusiones juegan un rol fundamental al combinar el trabajo de 
 Sin embargo, no todas las fusiones son iguales, y las estrategias disponibles en Git ofrecen distintos beneficios según el contexto de desarrollo. Esta actividad explora tres estrategias de fusión: **Fast-forward**, **No-fast-forward**, y **Squash**, cada una adaptada a situaciones específicas, desde desarrollos individuales hasta metodologías ágiles, CI/CD y DevOps.
 
 ##### 1. Fast-forward: Mantener un historial limpio y lineal
+![Git Fast Forward Merge | A Visual](https://www.youtube.com/watch?v=QjL4oMyfMac)
+[Fast-forward merges are the future #git #coding](https://www.youtube.com/shorts/j1HTNbvBt7E)
 
-La fusión fast-forward en Git es la opción predeterminada y más simple cuando no se han realizado commits en la rama principal (o base) desde que se creó la rama de característica. En lugar de crear un nuevo commit de fusión, este método simplemente mueve el puntero HEAD de la rama principal al último commit de la rama de característica. Como resultado, el historial de commits permanece lineal y sin interrupciones.
 
-El fast-forward es ideal en desarrollos individuales o proyectos pequeños, donde el flujo de trabajo es secuencial y no se realizan múltiples contribuciones paralelas. Al evitar commits de fusión innecesarios, este enfoque mantiene el historial del proyecto limpio y fácil de seguir. Para desarrolladores que trabajan solos, la fusión fast-forward es perfecta, ya que no agrega complejidad innecesaria ni desordena el historial.
+La fusión fast-forward en Git es la ==opción predeterminada y más simple cuando no se han realizado commits en la rama principal (o base) desde que se creó la rama de característica==. En lugar de crear un nuevo commit de fusión, este método simplemente mueve el puntero HEAD de la rama principal al último commit de la rama de característica. Como resultado, el historial de commits permanece lineal y sin interrupciones.
 
-Sin embargo, esta simplicidad puede convertirse en un obstáculo en proyectos colaborativos más grandes. Al no registrar explícitamente el punto de fusión entre ramas, la capacidad de entender el contexto de la integración de características se pierde. A largo plazo, en un equipo, puede ser difícil rastrear cuándo y cómo se fusionaron diferentes ramas, lo que convierte al fast-forward en una estrategia menos adecuada para proyectos con múltiples colaboradores o donde los cambios ocurren simultáneamente en varias ramas.
+El fast-forward es ideal en desarrollos individuales o proyectos pequeños, donde el flujo de trabajo es secuencial y no se realizan múltiples contribuciones paralelas. ==Al evitar commits de fusión innecesarios, este enfoque mantiene el historial del proyecto limpio y fácil de seguir.== Para desarrolladores que trabajan solos, la fusión fast-forward es perfecta, ya que no agrega complejidad innecesaria ni desordena el historial.
+
+Sin embargo, esta simplicidad puede convertirse en un obstáculo en proyectos colaborativos más grandes. ==Al no registrar explícitamente el punto de fusión entre ramas, la capacidad de entender el contexto de la integración de características se pierde==. A largo plazo, en un equipo, puede ser difícil rastrear cuándo y cómo se fusionaron diferentes ramas, lo que convierte al fast-forward en una estrategia menos adecuada para proyectos con múltiples colaboradores o donde los cambios ocurren simultáneamente en varias ramas.
 
 ##### 2. No-fast-forward: Preservar el contexto de los cambios
 
-A diferencia de la fusión fast-forward, la opción no-fast-forward crea un commit de fusión que preserva explícitamente el momento y el contexto en el que se integraron las ramas. Esta estrategia es fundamental en entornos de trabajo colaborativo, especialmente en proyectos grandes donde múltiples desarrolladores están trabajando simultáneamente en diferentes características o correcciones.
+A diferencia de la fusión fast-forward, ==la opción no-fast-forward crea un commit de fusión que preserva explícitamente el momento y el contexto en el que se integraron las ramas==. Esta estrategia es fundamental en entornos de trabajo colaborativo, especialmente en proyectos grandes donde múltiples desarrolladores están trabajando simultáneamente en diferentes características o correcciones.
 
 El commit de fusión que se genera en una fusión no-fast-forward tiene dos "parent commits": uno correspondiente a la rama de origen y otro a la rama destino. Este enfoque proporciona una clara trazabilidad de los cambios y facilita la revisión del historial, lo que es crucial en equipos donde es necesario entender no solo qué cambios se hicieron, sino también cuándo y por qué se unieron a la rama principal.
 
@@ -82,7 +85,7 @@ $ git commit -m "Agregar descripción al README.md"
 # Cambiar de vuelta a la rama 'main' y realizar la fusión fast-forward
 $ git checkout main
 $ git merge add-description
-
+	
 # Ver el historial lineal
 $ git log --graph --oneline
 ```
@@ -165,11 +168,17 @@ $ git commit -m "Agregar LICENSE.txt"
 ```
 
 **Pregunta:** ¿Cuál es tu estructura de commits?
+> ![[Pasted image 20250408093102.png]]
+
 ```bash
 # Cambiar de vuelta a la rama 'main' y realizar la fusión squash
 $ git checkout main
 $ git merge --squash add-basic-files
 ```
+> ![[Pasted image 20250408093158.png]]
+> Al validar los commits y ver el status obtuve:
+> ![[Pasted image 20250408093304.png]]
+> Lo que indica que `git merge --squash` no hace el commit automáticamente
 
 Los commits luego se aplastan y se convierten en un solo commit:
 
@@ -179,6 +188,8 @@ $ git add .
 $ git commit -m "Agregar documentación estándar del repositorio"
 $ git log --graph --oneline
 ```
+
+> ![[Pasted image 20250408093908.png]]
 
 Esto combinará todos los cambios de la rama add-multiple-features en un solo nuevo commit en la rama main.
 
@@ -226,10 +237,32 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
    git commit -m "commit inicial del  index.html en main"
    ```
 
+---
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Initial Project CC3S2</h1>
+</body>
+</html>
+```
+
+> ![[Pasted image 20250408112525.png]]
+
+---
+
+
 3. Crea y cambia a una nueva rama feature-update:
    ```bash
    git checkout -b feature-update
    ```
+> ![[Pasted image 20250408112724.png]]
+
 
 4. Edita el archivo y realiza un commit en la rama feature-update:
    ```bash
@@ -238,6 +271,26 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
    git commit -m "Actualiza ..."
    ```
 
+---
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Initial Project CC3S2</h1>
+    <p>When adding this paragraph I'm on the feature-update branch/p>
+</body>
+</html> 
+```
+
+> ![[Pasted image 20250408113053.png]]
+---
+
+
 5. Regresa a la rama main y realiza una edición en el mismo archivo:
    ```bash
    git checkout main
@@ -245,6 +298,30 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
    git add index.html
    git commit -m "....index.html"
    ```
+
+---
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Initial Project CC3S2</h1>
+    <footer>
+        <a href="mailto:example@example.com">Contact Us</a>
+    </footer>
+</body>
+</html>
+```
+
+> ![[Pasted image 20250408113856.png]]
+
+
+---
+
 
 6. Fusiona la rama feature-update con --no-ff y observa el conflicto:
    ```bash
@@ -263,21 +340,80 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
    </html>
    ```
 
+---
+
+**Before**
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Initial Project CC3S2</h1>
+<<<<<<< HEAD
+    <footer>
+        <a href="mailto:example@example.com">Contact Us</a>
+    </footer>
+=======
+    <p>When adding this paragraph I'm on the feature-update branch/p>
+>>>>>>> feature-update
+</body>
+</html> 
+```
+
+**After**
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Initial Project CC3S2</h1>
+    <p>When adding this paragraph I'm on the feature-update branch/p>
+    <footer>
+        <a href="mailto:example@example.com">Contact Us</a>
+    </footer>
+</body>
+
+</html>
+```
+
+---
+
 8. Agrega el archivo corregido y completa la fusión:
    ```bash
    git add index.html
    git commit
    ```
+> ![[Pasted image 20250408114937.png]]
 
 9. Verifica el historial para confirmar la fusión y el commit de resolución de conflicto:
    ```bash
    git log --graph --oneline
    ```
+> ![[Pasted image 20250408114949.png]]
+> El *commit* que resolvió los conflictos de merge tiene dos padres `5cb56dc` y `8cdd777`
+> ![[Pasted image 20250408124755.png]]
 
 **Preguntas:**
 - ¿Qué pasos adicionales tuviste que tomar para resolver el conflicto?
-- ¿Qué estrategias podrías emplear para evitar conflictos en futuros desarrollos colaborativos?
+> No tuve que realizar ningún paso adicional mas allá de ejecutar el comando `git log --graph --oneline --all` después de cada cambio ya sea de rama o al realizar un nuevo *commit* para tener una mejor perspectiva de los cambios.
 
+- ¿Qué estrategias podrías emplear para evitar conflictos en futuros desarrollos colaborativos?
+> El conflicto surgió porque dos ramas trabajaron en el mismo archivo, una estrategia sería que cada rama creada trabaje en un archivo o módulo independiente. Considero importante usar los enfoques de **código de propósito único** y **código completo**.
+
+
+
+![[non-fast-forward-diagram.gif]]]
 
 #### Ejercicio: Comparar los historiales con git log después de diferentes fusiones
 
@@ -304,16 +440,33 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
    git commit -m "Se agrega caracteristica 2"
    ```
 
+
+> ![[Pasted image 20250408131257.png]]
+> ![[Pasted image 20250408131431.png]]
+> ![[Pasted image 20250408131755.png]]
+> 
+
+
 2. Fusiona feature-1 usando fast-forward:
    ```bash
    git checkout main
    git merge feature-1 --ff
    ```
+> ![[Pasted image 20250408133505.png]]
+
 
 3. Fusiona feature-2 usando non-fast-forward:
    ```bash
    git merge feature-2 --no-ff
    ```
+>
+> **Before**
+> ![[Pasted image 20250408134533.png]]
+> **After**
+> ![[Pasted image 20250408134606.png]]
+> ![[Pasted image 20250408134837.png]]
+>
+
 
 4. Realiza una nueva rama feature-3 con múltiples commits y fusiónala con squash:
    ```bash
@@ -321,27 +474,46 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
    echo "Caracteristica 3 paso 1" >> version.txt
    git add version.txt
    git commit -m "Caracteristica 3 paso 1"
+   ```
+> ![[Pasted image 20250408141017.png]]
+
+
+```bash
    echo "Caracteristica 3 paso 2" >> version.txt
    git add version.txt
    git commit -m "Caracteristica 3 paso 2"
+```
+> ![[Pasted image 20250408142227.png]]
+
+```shell
    git checkout main
    git merge --squash feature-3
    git commit -m "Agregar caracteristica 3 en un commit"
-   ```
+```
+> ![[Pasted image 20250408143706.png]]
 
-5. Compara el historial de Git:
+
+4. Compara el historial de Git:
+   
    - Historial Fast-forward:
      ```bash
      git log --graph --oneline --merges --first-parent –branches
      ```
+> ![[Pasted image 20250408145339.png]]
+
+
    - Historial Non-fast-forward:
      ```bash
      git log --graph --oneline –merges
      ```
+> ![[Pasted image 20250408145357.png]]
+
    - Historial con Squash:
      ```bash
      git log --graph --oneline --merges --decorate --all
      ```
+> ![[Pasted image 20250408145435.png]]
+
 
 **Preguntas:**
 - ¿Cómo se ve el historial en cada tipo de fusión?
