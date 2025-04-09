@@ -13,8 +13,23 @@ Dentro de Git, las fusiones juegan un rol fundamental al combinar el trabajo de 
 Sin embargo, no todas las fusiones son iguales, y las estrategias disponibles en Git ofrecen distintos beneficios según el contexto de desarrollo. Esta actividad explora tres estrategias de fusión: **Fast-forward**, **No-fast-forward**, y **Squash**, cada una adaptada a situaciones específicas, desde desarrollos individuales hasta metodologías ágiles, CI/CD y DevOps.
 
 ##### 1. Fast-forward: Mantener un historial limpio y lineal
-![Git Fast Forward Merge | A Visual](https://www.youtube.com/watch?v=QjL4oMyfMac)
-[Fast-forward merges are the future #git #coding](https://www.youtube.com/shorts/j1HTNbvBt7E)
+
+
+<iframe width="600" height="400" 
+        src="https://www.youtube.com/watch?v=QjL4oMyfMac" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+</iframe>
+
+<iframe width="600" height="400" 
+        src="https://www.youtube.com/shorts/j1HTNbvBt7E" 
+        title="YouTube video player" 
+        frameborder="0" 
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        allowfullscreen>
+</iframe>
 
 
 La fusión fast-forward en Git es la ==opción predeterminada y más simple cuando no se han realizado commits en la rama principal (o base) desde que se creó la rama de característica==. En lugar de crear un nuevo commit de fusión, este método simplemente mueve el puntero HEAD de la rama principal al último commit de la rama de característica. Como resultado, el historial de commits permanece lineal y sin interrupciones.
@@ -77,9 +92,9 @@ $ git commit -m "Agregar descripción al README.md"
 ```
 
 **Pregunta:** Muestra la estructura de commits resultante.
-> ![[Pasted image 20250407232204.png]]
+> <img src="imgs/Pasted image 20250407232204.png" width="600">
 > La rama por principal por defecto es ``master``, la cambiaré a ``main``
-> ![[Pasted image 20250407232511.png]]
+> <img src="imgs/Pasted image 20250407232511.png" width="600">
 
 ```bash
 # Cambiar de vuelta a la rama 'main' y realizar la fusión fast-forward
@@ -89,7 +104,7 @@ $ git merge add-description
 # Ver el historial lineal
 $ git log --graph --oneline
 ```
-> ![[Pasted image 20250407232613.png]]
+> <img src="imgs/Pasted image 20250407232613.png" width="600">
 
 **Resultado:** El historial de tu repositorio.
 
@@ -120,7 +135,7 @@ $ git commit -m "Implementar nueva característica"
 ```
 
 **Pregunta:** Muestra el log de commits resultante.
-> ![[Pasted image 20250407233250.png]]
+> <img src="imgs/Pasted image 20250407233250.png" width="600">
 
 ```bash
 # Cambiar de vuelta a la rama 'main' y realizar una fusión no-fast-forward
@@ -133,7 +148,7 @@ Después de la edición, veamos el log ahora:
 # Ver el historial
 $ git log --graph --oneline
 ```
-> ![[Pasted image 20250407234002.png]]
+> <img src="imgs/Pasted image 20250407234002.png" width="600">
 
 El historial de tu repositorio mostrará un commit de fusión.
 
@@ -168,16 +183,16 @@ $ git commit -m "Agregar LICENSE.txt"
 ```
 
 **Pregunta:** ¿Cuál es tu estructura de commits?
-> ![[Pasted image 20250408093102.png]]
+> <img src="imgs/Pasted image 20250408093102.png" width="600">
 
 ```bash
 # Cambiar de vuelta a la rama 'main' y realizar la fusión squash
 $ git checkout main
 $ git merge --squash add-basic-files
 ```
-> ![[Pasted image 20250408093158.png]]
+> <img src="imgs/Pasted image 20250408093158.png" width="600">
 > Al validar los commits y ver el status obtuve:
-> ![[Pasted image 20250408093304.png]]
+> <img src="imgs/Pasted image 20250408093304.png" width="600">
 > Lo que indica que `git merge --squash` no hace el commit automáticamente
 
 Los commits luego se aplastan y se convierten en un solo commit:
@@ -189,7 +204,7 @@ $ git commit -m "Agregar documentación estándar del repositorio"
 $ git log --graph --oneline
 ```
 
-> ![[Pasted image 20250408093908.png]]
+> <img src="imgs/Pasted image 20250408093908.png" width="600">
 
 Esto combinará todos los cambios de la rama add-multiple-features en un solo nuevo commit en la rama main.
 
@@ -252,7 +267,7 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
 </html>
 ```
 
-> ![[Pasted image 20250408112525.png]]
+> <img src="imgs/Pasted image 20250408112525.png" width="600">
 
 ---
 
@@ -261,7 +276,7 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
    ```bash
    git checkout -b feature-update
    ```
-> ![[Pasted image 20250408112724.png]]
+> <img src="imgs/Pasted image 20250408112724.png" width="600">
 
 
 4. Edita el archivo y realiza un commit en la rama feature-update:
@@ -287,7 +302,7 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
 </html> 
 ```
 
-> ![[Pasted image 20250408113053.png]]
+> <img src="imgs/Pasted image 20250408113053.png" width="600">
 ---
 
 
@@ -317,7 +332,7 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
 </html>
 ```
 
-> ![[Pasted image 20250408113856.png]]
+> <img src="imgs/Pasted image 20250408113856.png" width="600">
 
 
 ---
@@ -394,15 +409,15 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
    git add index.html
    git commit
    ```
-> ![[Pasted image 20250408114937.png]]
+> <img src="imgs/Pasted image 20250408114937.png" width="600">
 
 9. Verifica el historial para confirmar la fusión y el commit de resolución de conflicto:
    ```bash
    git log --graph --oneline
    ```
-> ![[Pasted image 20250408114949.png]]
+> <img src="imgs/Pasted image 20250408114949.png" width="600">
 > El *commit* que resolvió los conflictos de merge tiene dos padres `5cb56dc` y `8cdd777`
-> ![[Pasted image 20250408124755.png]]
+> <img src="imgs/Pasted image 20250408124755.png" width="600">
 
 **Preguntas:**
 - ¿Qué pasos adicionales tuviste que tomar para resolver el conflicto?
@@ -413,7 +428,7 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
 
 
 
-![[non-fast-forward-diagram.gif]]]
+<img src="imgs/non-fast-forward-diagram.gif" width="600">]
 
 #### Ejercicio: Comparar los historiales con git log después de diferentes fusiones
 
@@ -441,9 +456,9 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
    ```
 
 
-> ![[Pasted image 20250408131257.png]]
-> ![[Pasted image 20250408131431.png]]
-> ![[Pasted image 20250408131755.png]]
+> <img src="imgs/Pasted image 20250408131257.png" width="600">
+> <img src="imgs/Pasted image 20250408131431.png" width="600">
+> <img src="imgs/Pasted image 20250408131755.png" width="600">
 > 
 
 
@@ -452,7 +467,7 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
    git checkout main
    git merge feature-1 --ff
    ```
-> ![[Pasted image 20250408133505.png]]
+> <img src="imgs/Pasted image 20250408133505.png" width="600">
 
 
 3. Fusiona feature-2 usando non-fast-forward:
@@ -461,10 +476,10 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
    ```
 >
 > **Before**
-> ![[Pasted image 20250408134533.png]]
+> <img src="imgs/Pasted image 20250408134533.png" width="600">
 > **After**
-> ![[Pasted image 20250408134606.png]]
-> ![[Pasted image 20250408134837.png]]
+> <img src="imgs/Pasted image 20250408134606.png" width="600">
+> <img src="imgs/Pasted image 20250408134837.png" width="600">
 >
 
 
@@ -475,7 +490,7 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
    git add version.txt
    git commit -m "Caracteristica 3 paso 1"
    ```
-> ![[Pasted image 20250408141017.png]]
+> <img src="imgs/Pasted image 20250408141017.png" width="600">
 
 
 ```bash
@@ -483,14 +498,14 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
    git add version.txt
    git commit -m "Caracteristica 3 paso 2"
 ```
-> ![[Pasted image 20250408142227.png]]
+> <img src="imgs/Pasted image 20250408142227.png" width="600">
 
 ```shell
    git checkout main
    git merge --squash feature-3
    git commit -m "Agregar caracteristica 3 en un commit"
 ```
-> ![[Pasted image 20250408143706.png]]
+> <img src="imgs/Pasted image 20250408143706.png" width="600">
 
 
 4. Compara el historial de Git:
@@ -499,20 +514,20 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
      ```bash
      git log --graph --oneline --merges --first-parent –branches
      ```
-> ![[Pasted image 20250408145339.png]]
+> <img src="imgs/Pasted image 20250408145339.png" width="600">
 
 
    - Historial Non-fast-forward:
      ```bash
      git log --graph --oneline –merges
      ```
-> ![[Pasted image 20250408145357.png]]
+> <img src="imgs/Pasted image 20250408145357.png" width="600">
 
    - Historial con Squash:
      ```bash
      git log --graph --oneline --merges --decorate --all
      ```
-> ![[Pasted image 20250408145435.png]]
+> <img src="imgs/Pasted image 20250408145435.png" width="600">
 
 
 **Preguntas:**

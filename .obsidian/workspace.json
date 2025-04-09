@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "83f8c7df4f2b39c9",
+        "id": "52349526fdb976b7",
         "type": "tabs",
         "children": [
           {
-            "id": "e901648f0bc9ea73",
+            "id": "e2a394cd4b5dbcbc",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Actividad4-CC3S2.md",
+                "file": "Actividad5-CC3S2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Actividad4-CC3S2"
+              "title": "Actividad5-CC3S2"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Actividad4-CC3S2.md",
+                "file": "Actividad5-CC3S2.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Actividad4-CC3S2"
+              "title": "Backlinks for Actividad5-CC3S2"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Actividad4-CC3S2.md",
+                "file": "Actividad5-CC3S2.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Actividad4-CC3S2"
+              "title": "Outgoing links from Actividad5-CC3S2"
             }
           },
           {
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Actividad4-CC3S2.md",
+                "file": "Actividad5-CC3S2.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Actividad4-CC3S2"
+              "title": "Outline of Actividad5-CC3S2"
             }
           }
         ]
@@ -168,6 +168,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "e901648f0bc9ea73",
-  "lastOpenFiles": []
+  "active": "e2a394cd4b5dbcbc",
+  "lastOpenFiles": [
+    "Actividad4-CC3S2.md",
+    "Actividad5-CC3S2.md"
+  ]
 }
