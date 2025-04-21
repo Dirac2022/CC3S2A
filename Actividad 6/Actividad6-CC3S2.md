@@ -281,7 +281,12 @@ Después de que hayas realizado con éxito el cherry-pick del commit, se agregar
    **Preguntas:**
 
    - ¿Cómo utilizarías cherry-pick en un pipeline de CI/CD para mover solo ciertos cambios listos a producción?  
+> Para mover solo ciertos cambios listos a producción mediante `cherry-pick`, primero revisaría el historial de la rama de desarrollo (`git log`) para identificar los commits que contienen cambios estables y validados. Una vez identificados, ejecutaría `git cherry-pick <hash_commit>` desde la rama de producción o staging, lo que me permite integrar únicamente esos cambios sin arrastrar el resto del trabajo aún en desarrollo.
+
    - ¿Qué ventajas ofrece cherry-pick en un flujo de trabajo de DevOps?
+   > 1. Nos ayuda a elegir exactamente los commits que contienen los cambios que deseamos integrar en una rama. Lo cual es útil si por ejemplo en la rama secundaría donde vamos a extraer los cambios se encuentra aun en desarrollo y no ha pasado todas las pruebas, pero ese commit o commits en particular están listos para agregarlo a una rama principal que se encarga de la producción.
+   > 2. Evitamos merge completo de ramas, con esto evitamos conflictos y errores en producción.
+   > 3. Si por ejemplo se tiene que liberar una funcionalidad de una rama feature, aunque la rama feature no este lista, si hay ciertos cambios listos para producción `cherry-pick` sería nuestra opción.
 
    **Comandos:**
    ```bash
@@ -291,7 +296,10 @@ Después de que hayas realizado con éxito el cherry-pick del commit, se agregar
    $ echo "Commit inicial en main" > main.md
    $ git add main.md
    $ git commit -m "Commit inicial en main"
+```
+<img src="imgs6/parte3-10.png">
 
+```bash
    $ git checkout -b feature
    $ echo "Primera característica" > feature1.md
    $ git add feature1.md
@@ -300,11 +308,25 @@ Después de que hayas realizado con éxito el cherry-pick del commit, se agregar
    $ echo "Segunda característica" > feature2.md
    $ git add feature2.md
    $ git commit -m "Agregar segunda característica"
+```
+<img src="imgs6/parte3-11.png">
+<img src="imgs6/parte3-12.png">
 
+> Agregaré adicionalmente dos commits.
+> <img src="imgs6/parte3-13.png">
+> Agregué el commit `7b2f3e0` donde se añade un nuevo archivo `feature3.md` y el commit `39d60dc` donde se actualiza el archivo `feature1.md`. 
+> Ahora, los commits que agregaré a la rama `main` serán el primer y cuarto commit: `e4e649c`, `39d60dc`.
+
+```bash
    $ git checkout main
+```
+<img src="imgs6/parte3-14.png">
+
+```bash
    $ git cherry-pick <hash_del_commit1>
    $ git cherry-pick <hash_del_commit2>
    ```
+<img src="imgs6/parte3-15.png">
 
 ---
 
@@ -332,7 +354,10 @@ $ git init
 $ echo "# Proyecto Scrum" > README.md
 $ git add README.md
 $ git commit -m "Commit inicial en main"
+```
+<img src="imgs6/parte4-1.png">
 
+```bash
 # Crear ramas de historias de usuario
 $ git checkout -b feature-user-story-1
 $ git checkout -b feature-user-story-2
@@ -340,6 +365,7 @@ $ git checkout -b feature-user-story-2
 
 **Pregunta:** ¿Por qué es importante trabajar en ramas de funcionalidades separadas durante un sprint?
 
+>  Porque así tendríamos una rama principal que sirva como base para producción y cuando tengamos que trabajar en historias de usuarios estas se puedan  aislar, cada una en una rama de funcionalidad. Esto reduce la posibilidad de conflictos y asegura que el código en la rama principal se mantenga estable.
 
 #### **Fase 2: Desarrollo del sprint (sprint execution)**
 
@@ -361,13 +387,18 @@ $ git checkout main
 $ echo "Actualización en main" > updates.md
 $ git add updates.md
 $ git commit -m "Actualizar main con nuevas funcionalidades"
+```
+<img src="imgs6/parte4-2.png">
 
+```bash
 # Rebase de la rama feature-user-story-1 sobre main
 $ git checkout feature-user-story-1
 $ git rebase main
 ```
+<img src="imgs6/parte4-3.png">
 
 **Pregunta:** ¿Qué ventajas proporciona el rebase durante el desarrollo de un sprint en términos de integración continua?
+> Nos ayuda a mantener las ramas de funcionalidades (`feature branch`) actualizadas con los últimos cambios hechos en la rama principal. Esto es útil en CI ya que los builds y test automáticos deben trabajar sobre un código actualizado.
 
 
 #### **Fase 3: Revisión del sprint (sprint review)**
@@ -389,18 +420,26 @@ $ git checkout feature-user-story-2
 $ echo "Funcionalidad lista" > feature2.md
 $ git add feature2.md
 $ git commit -m "Funcionalidad lista para revisión"
+```
+<img src="imgs6/parte4-4.png">
 
+```bash
 $ echo "Funcionalidad en progreso" > progress.md
 $ git add progress.md
 $ git commit -m "Funcionalidad aún en progreso"
+```
+<img src="imgs6/parte4-5.png">
 
+```bash
 # Ahora selecciona solo el commit que esté listo
 $ git checkout main
 $ git cherry-pick <hash_del_commit_de_feature-lista>
 ```
+<img src="imgs6/parte4-6.png">
 
 **Pregunta:** ¿Cómo ayuda `git cherry-pick` a mostrar avances de forma selectiva en un sprint review?
 
+> Como `git cherry-pick` nos ayuda a agregar solo los commits que queremos, esto nos da la opción de mostrar avances específicos sin tener que mostrar el código de toda una rama donde el último commit esta sujeto a errores. 
 
 #### **Fase 4: Retrospectiva del sprint (sprint retrospective)**
 
@@ -421,19 +460,43 @@ $ git checkout feature-user-story-1
 $ echo "Cambio en la misma línea" > conflicted-file.md
 $ git add conflicted-file.md
 $ git commit -m "Cambio en feature 1"
+```
+<img src="imgs6/parte4-7.png">
 
+```bash
 $ git checkout feature-user-story-2
 $ echo "Cambio diferente en la misma línea" > conflicted-file.md
 $ git add conflicted-file.md
 $ git commit -m "Cambio en feature 2"
+```
+<img src="imgs6/parte4-8.png">
 
+```bash
 # Intentar hacer merge en main
 $ git checkout main
+```
+<img src="imgs6/parte4-9.png">
+```bash
 $ git merge feature-user-story-1
+```
+<img src="imgs6/parte4-10.png">
+<img src="imgs6/parte4-11.png">
+
+```bash
 $ git merge feature-user-story-2
 ```
-
+<img src="imgs6/parte4-12.png">
+<img src="imgs6/parte4-13.png">
+<img src="imgs6/parte4-14.png">
 **Pregunta**: ¿Cómo manejas los conflictos de fusión al final de un sprint? ¿Cómo puede el equipo mejorar la comunicación para evitar conflictos grandes?
+> - Para manejar los conflictos se debe revisar manualmente los archivos que generan estos conflictos de fusión para elegir la versión adecuada, ya sea combinando la información de las ramas, o eligiendo una sobre otra o incluso agregando nuevas líneas.
+> - Para evitar conflictos grandes debe haber una comunicación activa en el equipo de desarrollo para que un determinado archivo o grupo de archivo no se modifique por más de una persona o equipos a la vez. Una buena práctica es realizar commits pequeños y frecuentes, como lo recomiendas las lecturas 7 y 8.
+> 
+
+> [!tip] **Resumen visual desde la Fase 1 hasta la Fase 4**
+
+> <img src="imgs6/ppt-actividad6-4.gif">
+
 
 
 #### **Fase 5: Fase de desarrollo, automatización de integración continua (CI) con git rebase**
@@ -449,6 +512,13 @@ En un entorno CI, es común automatizar ciertas operaciones de Git para asegurar
 1. Configura un hook `pre-push` que haga un rebase automático de la rama `main` sobre la rama de funcionalidad antes de que el push sea exitoso.
 2. Prueba el hook haciendo push de algunos cambios en la rama `feature-user-story-1`.
 
+>[!warning] Los cambios que se hagan en la carpeta hooks no se rastrean por git
+
+> Antes de ejecutar los comandos debo crear el repo remoto y configurarlo con un primer push, el no hacerlo me creará errores.
+> <img src="imgs6/parte4-15.png">
+> Adicionalmente insertare un comando adicional que me indique que se esta ejecutando un hook
+
+
 **Comandos:**
 ```bash
 # Dentro de tu proyecto, crea un hook pre-push
@@ -456,21 +526,40 @@ $ nano .git/hooks/pre-push
 
 # Agrega el siguiente script para automatizar el rebase
 #!/bin/bash
+echo "Ejecutanto hook"
 git fetch origin main
 git rebase origin/main
 
 # Haz el archivo ejecutable
 $ chmod +x .git/hooks/pre-push
+```
+<img src="imgs6/parte4-16.png">
+<img src="imgs6/parte4-17.png">
 
+```bash
 # Simula cambios y haz push
 $ git checkout feature-user-story-1
 $ echo "Cambios importantes" > feature1.md
 $ git add feature1.md
 $ git commit -m "Cambios importantes en feature 1"
+```
+<img src="imgs6/parte4-18.png">
+
+```bash
 $ git push origin feature-user-story-1
 ```
+<img src="imgs6/parte4-19.png">
+> Al hacer un push se genera un `pull request` en github
+> <img src="imgs6/parte4-20.png">
+
+
+
 
 **Pregunta**: ¿Qué ventajas y desventajas observas al automatizar el rebase en un entorno de CI/CD?
+
+> - Las ventajas inmediatas que observo es un historial de commits lineal, esto nos ayudaría a detectar conflictos, evitando fallos en la integración. 
+> - Una desventaja que observo es su complejidad para iniciantes, personalmente me costo un poco entender de manera profunda el concepto detrás del *rebasing* al inicio.
+> - Otra desventaja notable es que el historial se reescribe, lo cual puede ser perjudicial en algunos casos.
 
 ---
 
@@ -627,6 +716,8 @@ $ git tag v2.4.4 <commit>
      $ git add .
      $ git commit -m "Commit inicial con contenido base"
      ```
+<img src="imgs6/parte5-1.png">   
+   
    - **Paso 5**: Crea dos ramas activas: main y feature-branch.
      ```bash
      $ git branch feature-branch  # Crear una nueva rama
@@ -638,6 +729,8 @@ $ git tag v2.4.4 <commit>
      $ git add .
      $ git commit -m "Cambios en feature-branch"
      ```
+   <img src="imgs6/parte5-2.png">
+   
    - **Paso 7**: Regresa a la rama main y realiza otro cambio en la misma línea del archivo `archivo_colaborativo.txt`.
      ```bash
      $ git checkout main
@@ -645,6 +738,7 @@ $ git tag v2.4.4 <commit>
      $ git add .
      $ git commit -m "Cambios en main"
      ```
+<img src="imgs6/parte5-3.png">
 
 2. **Fusión y resolución de conflictos**
 
@@ -663,35 +757,64 @@ $ git tag v2.4.4 <commit>
      $ git add .
      $ git commit -m "Conflictos resueltos"
      ```
+> En mi caso he decidido aceptar los cambios de la rama `main`. Por lo tanto usaré `git checkout --ours archivo_colaborativo.txt`
+<img src="imgs6/parte5-4.png">
 
 3. **Simulación de fusiones y uso de git diff**
 
    - **Paso 1**: Simula una fusión usando `git merge --no-commit --no-ff` para ver cómo se comportarían los cambios antes de realizar el commit.
-     ```bash
+> Para ello agregaré una tercera línea, tanto en la rama `main` como en `feature-branch`
+> <img src="imgs6/parte5-5.png">
+
+```bash
      $ git merge --no-commit --no-ff feature-branch
      $ git diff --cached  # Ver los cambios en el área de staging
      $ git merge --abort  # Abortar la fusión si no es lo que se esperaba
      ```
+<img src="imgs6/parte5-6.png">
+
+
 
 4. **Uso de git mergetool**
+
+> Actualmente: 
+> <img src="imgs6/parte5-7.png">
 
    - **Paso 1**: Configura git mergetool con una herramienta de fusión visual (puedes usar meld, vimdiff, o Visual Studio Code).
      ```bash
      $ git config --global merge.tool <nombre-herramienta>
      $ git mergetool
      ```
+<img src="imgs6/parte5-8.png">
+
    - **Paso 2**: Usa la herramienta gráfica para resolver un conflicto de fusión.
+<img src="imgs6/parte5-9.png">
+<img src="imgs6/parte5-10.png">
+<img src="imgs6/parte5-11.png">
 
 5. **Uso de git revert y git reset**
 
+> Agrego un nuevo commit en `main`
+> <img src="imgs6/parte5-12.png">
+
    - **Paso 1**: Simula la necesidad de revertir un commit en main debido a un error. Usa `git revert` para crear un commit que deshaga los cambios.
-     ```bash
-     $ git revert <commit_hash>
-     ```
+
+```bash
+$ git revert <commit_hash>
+```
+   <img src="imgs6/parte5-13.png">
+   <img src="imgs6/parte5-14.png">
    - **Paso 2**: Realiza una prueba con `git reset --mixed` para entender cómo reestructurar el historial de commits sin perder los cambios no commiteados.
-     ```bash
+
+> Nuevamente agregaré un commit
+> <img src="imgs6/parte5-15.png">
+
+```bash
      $ git reset --mixed <commit_hash>
-     ```
+```
+<img src="imgs6/parte5-16.png">
+> Vemos que el HEAD a retrocedido al commit `6ac5e23`, además se han perdido las modificaciones agregadas al staging area, sin embargo, el archivo sigue manteniendo la ultima línea "Cuarta línea definitivamente, eso espero"
+
 
 6. **Versionado semántico y etiquetado**
 
@@ -703,6 +826,9 @@ $ git tag v2.4.4 <commit>
 
 7. **Aplicación de git bisect para depuración**
 
+> Estado actual
+> <img src="imgs6/parte5-17.png">
+
    - **Paso 1**: Usa `git bisect` para identificar el commit que introdujo un error en el código.
      ```bash
      $ git bisect start
@@ -711,12 +837,26 @@ $ git tag v2.4.4 <commit>
      # Continúa marcando como "good" o "bad" hasta encontrar el commit que introdujo el error
      $ git bisect reset  # Salir del modo bisect
      ```
+<img src="imgs6/parte5-18.png">
+> - Le indico que el commit `6ac5e23` es el malo (el penúltimo commit)
+> - Le indico que el primer commit del proyecto es el bueno
+
+
 
 8. **Documentación y reflexión**
 
    - **Paso 1**: Documenta todos los comandos usados y los resultados obtenidos en cada paso.
+> Cada comando de git que he ido viendo lo he documentado en un archivo markdown, el cual se encuentra en mi repositorio de apuntes: [Apuntes/Git/Git.md at main · Dirac2022/Apuntes](https://github.com/Dirac2022/Apuntes/blob/main/Git/Git.md)  https://github.com/Dirac2022/Apuntes/blob/main/Git/Git.md
+<img src="imgs6/parte5-19.png">
+   
+   
    - **Paso 2**: Reflexiona sobre la utilidad de cada comando en un flujo de trabajo de DevOps.
-
+> Cada comando de git tiene una utilidad específica, los comandos que encuentro más importantes en DevOps son los relacionados a integración, por ejemplo
+> - `git merge` ,  `git rebase`, y `git cherry-pick`
+> - `git log` para revisar el historial de commit, algo que personalmente uso muchísimo dado que soy nuevo en git.
+> - `git reset` y `git revert` para salvar errores
+> - `git diff` para analizar las diferencias entre archivos, commit o ramas.
+> - `git stash` para mantener a salvo el trabajo realizado, mientras se trabaja en otra tarea.
 
 #### **Preguntas**
 
@@ -787,7 +927,8 @@ Estás trabajando en un proyecto ágil donde múltiples desarrolladores están e
 
 **Pregunta:**  
 - ¿Cómo gestionarías la resolución de este conflicto de manera eficiente utilizando Git y manteniendo la entrega continua sin interrupciones? ¿Qué pasos seguirías para minimizar el impacto en la CI/CD y asegurar que el código final sea estable?
-
+> - Coordinaría con los dos equipos involucrados para decidir que cambios se agregarían a la rama principal.
+> - Una vez decidido que cambios se agregarían, me aseguraría que que pasen todas las pruebas automatizadas para que minimicen el impacto en la CI/CD.
 
 ##### **Ejercicio 2: Rebase vs. Merge en integraciones ágiles**
 
@@ -797,7 +938,9 @@ En tu equipo de desarrollo ágil, cada sprint incluye la integración de varias 
 **Pregunta:**  
 - ¿Qué ventajas y desventajas presenta cada enfoque (merge vs. rebase) en el contexto de la metodología ágil? ¿Cómo impacta esto en la revisión de código, CI/CD, y en la identificación rápida de errores?
 
-
+> - La ventaja de merge, es que mantiene el historial de commits, la desventaja es que puede volver el historial complejo, con muchas bifurcaciones y ramas paralelas.
+> Rebase por otro lado, mantiene una historial lineal, lo cual es ventajoso en muchos aspectos, como la revisión de código o restaurar el proyecto a un estado estable.
+> - Un historial lineal impacta positivamente en la revisión de código, ya que es mas sencillo de analizar y conduce a la rápida identificación de errores.
 ##### **Ejercicio 3: Git Hooks en un flujo de trabajo CI/CD ágil**
 
 **Contexto:**  
@@ -813,6 +956,11 @@ Tu equipo de desarrollo sigue una metodología ágil y está utilizando Git Flow
 
 **Pregunta:**  
 - Explica cómo adaptarías o modificarías la estrategia de branching para optimizar el flujo de trabajo del equipo en un entorno ágil y con integración continua. Considera cómo podrías integrar feature branches, release branches y hotfix branches de manera que apoyen la entrega continua y minimicen conflictos.
+> - Usaría los patrones base: source branching, mainline y healthy branch como pilares de mi estrategia, ya que estas favorecen el enfoque CI/CD.
+> - Si el proyecto es complejo usaría el enfoque de GitFlow donde la rama de trabajo será `develop` y por cada característica crearía a partir de `develop` una `feature-branch`. Para las integraciones usaría `git rebase` ya que es conveniente llevar un historial claro y lineal.
+> - Si el proyecto es pequeño y la autoría es importante, `git merge` sería la mejor opción, ya que el historial se puede volver medianamente complejo, pero al ser un proyecto pequeño sería manejable, además al no reescribirse el historial, cada commit, cada trabajo realizado por cada colaborador se mantendría en el historial.
+> - Gestionaría reuniones relámpago (5 min max) para evaluar los conflictos surgidos en las fusiones y decidir que cambios se van a agregar.
+> 
 
 
 ##### **Ejercicio 5: Automatización de reversiones con git en CI/CD**
@@ -822,6 +970,9 @@ Durante una integración continua en tu pipeline de CI/CD, se detecta un bug cr�
 
 **Pregunta:**  
 - ¿Cómo diseñarías un proceso automatizado con Git y CI/CD que permita revertir cambios de manera eficiente y segura? Describe cómo podrías integrar comandos como `git revert` o `git reset` en la pipeline y cuáles serían los pasos para garantizar que los bugs se reviertan sin afectar el desarrollo en curso.
+
+> Diseñaría un proceso que use `git revert`, elegiría este comando en vez de `git reset` ya que no es tan destructivo para el historial. Esta lógica se integraría en el pipeline usando por ejemplo  GitHub Actions, es decir un proceso que se active automáticamente cuando fallen ciertas pruebas tras un push a la rama main. 
+
 
 --- 
 **Entrega:**  
