@@ -15,6 +15,7 @@ Aprender a usar los comandos `git rebase` y `git cherry-pick` para mantener un h
 2. **Escenario de ejemplo:**
 
    - Crea un nuevo repositorio Git y dos ramas, main y new-feature:
+   
      ```bash
      $ mkdir prueba-git-rebase
      $ cd prueba-git-rebase
@@ -488,7 +489,11 @@ $ git merge feature-user-story-2
 <img src="imgs6/parte4-12.png">
 <img src="imgs6/parte4-13.png">
 <img src="imgs6/parte4-14.png">
+
+
 **Pregunta**: ¿Cómo manejas los conflictos de fusión al final de un sprint? ¿Cómo puede el equipo mejorar la comunicación para evitar conflictos grandes?
+
+
 > - Para manejar los conflictos se debe revisar manualmente los archivos que generan estos conflictos de fusión para elegir la versión adecuada, ya sea combinando la información de las ramas, o eligiendo una sobre otra o incluso agregando nuevas líneas.
 > - Para evitar conflictos grandes debe haber una comunicación activa en el equipo de desarrollo para que un determinado archivo o grupo de archivo no se modifique por más de una persona o equipos a la vez. Una buena práctica es realizar commits pequeños y frecuentes, como lo recomiendas las lecturas 7 y 8.
 > 
@@ -802,8 +807,15 @@ $ git tag v2.4.4 <commit>
 ```bash
 $ git revert <commit_hash>
 ```
-   <img src="imgs6/parte5-13.png">
-   <img src="imgs6/parte5-14.png">
+
+
+<img src="imgs6/parte5-13.png">
+
+
+
+<img src="imgs6/parte5-14.png">
+
+   
    - **Paso 2**: Realiza una prueba con `git reset --mixed` para entender cómo reestructurar el historial de commits sin perder los cambios no commiteados.
 
 > Nuevamente agregaré un commit
@@ -813,7 +825,10 @@ $ git revert <commit_hash>
      $ git reset --mixed <commit_hash>
 ```
 <img src="imgs6/parte5-16.png">
+
+
 > Vemos que el HEAD a retrocedido al commit `6ac5e23`, además se han perdido las modificaciones agregadas al staging area, sin embargo, el archivo sigue manteniendo la ultima línea "Cuarta línea definitivamente, eso espero"
+
 
 
 6. **Versionado semántico y etiquetado**
@@ -824,12 +839,14 @@ $ git revert <commit_hash>
      $ git push origin v1.0.0
      ```
 
+
 7. **Aplicación de git bisect para depuración**
 
 > Estado actual
 > <img src="imgs6/parte5-17.png">
 
    - **Paso 1**: Usa `git bisect` para identificar el commit que introdujo un error en el código.
+
      ```bash
      $ git bisect start
      $ git bisect bad   # Indica que la versión actual tiene un error
@@ -837,13 +854,20 @@ $ git revert <commit_hash>
      # Continúa marcando como "good" o "bad" hasta encontrar el commit que introdujo el error
      $ git bisect reset  # Salir del modo bisect
      ```
+
+
 <img src="imgs6/parte5-18.png">
+
+
 > - Le indico que el commit `6ac5e23` es el malo (el penúltimo commit)
 > - Le indico que el primer commit del proyecto es el bueno
 
 
 
+
+
 8. **Documentación y reflexión**
+
 
    - **Paso 1**: Documenta todos los comandos usados y los resultados obtenidos en cada paso.
 > Cada comando de git que he ido viendo lo he documentado en un archivo markdown, el cual se encuentra en mi repositorio de apuntes: [Apuntes/Git/Git.md at main · Dirac2022/Apuntes](https://github.com/Dirac2022/Apuntes/blob/main/Git/Git.md)  https://github.com/Dirac2022/Apuntes/blob/main/Git/Git.md
@@ -927,8 +951,11 @@ Estás trabajando en un proyecto ágil donde múltiples desarrolladores están e
 
 **Pregunta:**  
 - ¿Cómo gestionarías la resolución de este conflicto de manera eficiente utilizando Git y manteniendo la entrega continua sin interrupciones? ¿Qué pasos seguirías para minimizar el impacto en la CI/CD y asegurar que el código final sea estable?
+
+
 > - Coordinaría con los dos equipos involucrados para decidir que cambios se agregarían a la rama principal.
 > - Una vez decidido que cambios se agregarían, me aseguraría que que pasen todas las pruebas automatizadas para que minimicen el impacto en la CI/CD.
+
 
 ##### **Ejercicio 2: Rebase vs. Merge en integraciones ágiles**
 
@@ -938,9 +965,13 @@ En tu equipo de desarrollo ágil, cada sprint incluye la integración de varias 
 **Pregunta:**  
 - ¿Qué ventajas y desventajas presenta cada enfoque (merge vs. rebase) en el contexto de la metodología ágil? ¿Cómo impacta esto en la revisión de código, CI/CD, y en la identificación rápida de errores?
 
+
 > - La ventaja de merge, es que mantiene el historial de commits, la desventaja es que puede volver el historial complejo, con muchas bifurcaciones y ramas paralelas.
 > Rebase por otro lado, mantiene una historial lineal, lo cual es ventajoso en muchos aspectos, como la revisión de código o restaurar el proyecto a un estado estable.
 > - Un historial lineal impacta positivamente en la revisión de código, ya que es mas sencillo de analizar y conduce a la rápida identificación de errores.
+
+
+
 ##### **Ejercicio 3: Git Hooks en un flujo de trabajo CI/CD ágil**
 
 **Contexto:**  
@@ -949,6 +980,7 @@ Tu equipo está utilizando Git y una pipeline de CI/CD que incluye tests unitari
 **Pregunta:**  
 - Diseña un conjunto de Git Hooks que ayudaría a mitigar estos problemas, integrando validaciones de estilo y tests automáticos antes de permitir los commits. Explica qué tipo de validaciones implementarías y cómo se relaciona esto con la calidad del código y la entrega continua en un entorno ágil.
 
+
 ##### **Ejercicio 4: Estrategias de branching en metodologías ágiles**
 
 **Contexto:**  
@@ -956,6 +988,7 @@ Tu equipo de desarrollo sigue una metodología ágil y está utilizando Git Flow
 
 **Pregunta:**  
 - Explica cómo adaptarías o modificarías la estrategia de branching para optimizar el flujo de trabajo del equipo en un entorno ágil y con integración continua. Considera cómo podrías integrar feature branches, release branches y hotfix branches de manera que apoyen la entrega continua y minimicen conflictos.
+
 > - Usaría los patrones base: source branching, mainline y healthy branch como pilares de mi estrategia, ya que estas favorecen el enfoque CI/CD.
 > - Si el proyecto es complejo usaría el enfoque de GitFlow donde la rama de trabajo será `develop` y por cada característica crearía a partir de `develop` una `feature-branch`. Para las integraciones usaría `git rebase` ya que es conveniente llevar un historial claro y lineal.
 > - Si el proyecto es pequeño y la autoría es importante, `git merge` sería la mejor opción, ya que el historial se puede volver medianamente complejo, pero al ser un proyecto pequeño sería manejable, además al no reescribirse el historial, cada commit, cada trabajo realizado por cada colaborador se mantendría en el historial.
@@ -965,11 +998,14 @@ Tu equipo de desarrollo sigue una metodología ágil y está utilizando Git Flow
 
 ##### **Ejercicio 5: Automatización de reversiones con git en CI/CD**
 
+
 **Contexto:**  
 Durante una integración continua en tu pipeline de CI/CD, se detecta un bug crítico después de haber fusionado varios commits a la rama principal. El equipo necesita revertir los cambios rápidamente para mantener la estabilidad del sistema.
 
+
 **Pregunta:**  
 - ¿Cómo diseñarías un proceso automatizado con Git y CI/CD que permita revertir cambios de manera eficiente y segura? Describe cómo podrías integrar comandos como `git revert` o `git reset` en la pipeline y cuáles serían los pasos para garantizar que los bugs se reviertan sin afectar el desarrollo en curso.
+
 
 > Diseñaría un proceso que use `git revert`, elegiría este comando en vez de `git reset` ya que no es tan destructivo para el historial. Esta lógica se integraría en el pipeline usando por ejemplo  GitHub Actions, es decir un proceso que se active automáticamente cuando fallen ciertas pruebas tras un push a la rama main. 
 
