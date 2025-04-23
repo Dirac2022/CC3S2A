@@ -77,13 +77,14 @@ $ git commit -m "Agregar descripción al README.md"
 ```
 
 **Pregunta:** Muestra la estructura de commits resultante.
-> ![[Pasted image 20250407232204.png]]
+
+> <img src="imgs/Pasted image 20250407232204.png">
 
 
 > **La rama por principal por defecto es `master`, la cambiaré a `main**
 
 > 
-> ![[Pasted image 20250407232511.png]]
+> <img src="imgs/Pasted image 20250407232511.png">
 
 ```bash
 # Cambiar de vuelta a la rama 'main' y realizar la fusión fast-forward
@@ -96,7 +97,7 @@ $ git log --graph --oneline
 
 > **Vemos que la fusión se realizó sin ningún conflicto**
 
-> ![[Pasted image 20250407232613.png]]
+> <img src="imgs/Pasted image 20250407232613.png">
 
 **Resultado:** El historial de tu repositorio.
 
@@ -128,7 +129,7 @@ $ git commit -m "Implementar nueva característica"
 
 **Pregunta:** Muestra el log de commits resultante.
 
-> ![[Pasted image 20250407233250.png]]
+> <img src="imgs/Pasted image 20250407233250.png">
 
 ```bash
 # Cambiar de vuelta a la rama 'main' y realizar una fusión no-fast-forward
@@ -144,7 +145,7 @@ $ git log --graph --oneline
 
 > **Al no haber conflictos, se realizó el merge y automáticamente se realizo el commit de fusión con el mensaje por defecto "Merge branch 'add-feature' with no-fast-forward approach"
 
-> ![[Pasted image 20250407234002.png]]
+> <img src="imgs/Pasted image 20250407234002.png">
 
 El historial de tu repositorio mostrará un commit de fusión.
 
@@ -182,7 +183,7 @@ $ git commit -m "Agregar LICENSE.txt"
 
 > **Se presenta la estructura a continuación*
 
-> ![[Pasted image 20250408093102.png]]
+> <img src="imgs/Pasted image 20250408093102.png">
 
 ```bash
 # Cambiar de vuelta a la rama 'main' y realizar la fusión squash
@@ -191,12 +192,12 @@ $ git merge --squash add-basic-files
 ```
 
 
-> ![[Pasted image 20250408093158.png]]
+> <img src="imgs/Pasted image 20250408093158.png">
 > 
 
 > **Al validar los commits y ver el status obtuve**:
 
-> ![[Pasted image 20250408093304.png]]
+> <img src="imgs/Pasted image 20250408093304.png">
 
 > **Lo que me indica que `git merge --squash` no hace el commit automáticamente**
 
@@ -210,7 +211,7 @@ $ git commit -m "Agregar documentación estándar del repositorio"
 $ git log --graph --oneline
 ```
 
-> ![[Pasted image 20250408093908.png]]
+> <img src="imgs/Pasted image 20250408093908.png">
 
 > **Esto combinará todos los cambios de la rama add-multiple-features en un solo nuevo commit en la rama main.**
 
@@ -275,7 +276,7 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
 
 > **Agrego el primer commit y muestro el historial**
 
-> ![[Pasted image 20250408112525.png]]
+> <img src="imgs/Pasted image 20250408112525.png">
 
 ---
 
@@ -284,7 +285,7 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
    ```bash
    git checkout -b feature-update
    ```
-> ![[Pasted image 20250408112724.png]]
+> <img src="imgs/Pasted image 20250408112724.png">
 
 
 4. Edita el archivo y realiza un commit en la rama feature-update:
@@ -317,7 +318,7 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
 
 **Segundo commit**
 
-> ![[Pasted image 20250408113053.png]]
+> <img src="imgs/Pasted image 20250408113053.png">
 ---
 
 
@@ -352,7 +353,7 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
 ```
 
 
-> ![[Pasted image 20250408113856.png]]
+> <img src="imgs/Pasted image 20250408113856.png">
 
 
 ---
@@ -432,7 +433,7 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
    git commit
    ```
 
-> ![[Pasted image 20250408114937.png]]
+> <img src="imgs/Pasted image 20250408114937.png">
 
 
 9. Verifica el historial para confirmar la fusión y el commit de resolución de conflicto:
@@ -441,11 +442,11 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
    git log --graph --oneline
    ```
 
-> ![[Pasted image 20250408114949.png]]
+> <img src="imgs/Pasted image 20250408114949.png">
 
 > **El *commit* que resolvió los conflictos de merge tiene dos padres `5cb56dc` y `8cdd777`**
 
-> ![[Pasted image 20250408124755.png]]
+> <img src="imgs/Pasted image 20250408124755.png">
 
 
 
@@ -463,7 +464,7 @@ En algunos casos, las fusiones no son tan sencillas y pueden surgir conflictos q
 > **A continuación una demostración visual del flujo de trabajo de estos ejercicios**
 
 
-![[non-fast-forward-diagram.gif]]
+<img src="imgs/non-fast-forward-diagram.gif">
 
 #### Ejercicio: Comparar los historiales con git log después de diferentes fusiones
 
@@ -495,9 +496,9 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
 > Justificación: Podemos ver como se va modificando el historial por cada commit creado. Al inicio vemos que el historial es lineal y se va ramificando al crear ramas y hacer fusiones.
 
 
-> ![[Pasted image 20250408131257.png]]
-> ![[Pasted image 20250408131431.png]]
-> ![[Pasted image 20250408131755.png]]
+> <img src="imgs/Pasted image 20250408131257.png">
+> <img src="imgs/Pasted image 20250408131431.png">
+> <img src="imgs/Pasted image 20250408131755.png">
 > 
 
 
@@ -508,7 +509,7 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
    ```
 
 
-> ![[Pasted image 20250408133505.png]]
+> <img src="imgs/Pasted image 20250408133505.png">
 
 
 4. Fusiona feature-2 usando non-fast-forward:
@@ -520,17 +521,17 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
 > **Al realizar un merge `--no-ff` tenemos 
 
 
-> ![[Pasted image 20250408134533.png]]
+> <img src="imgs/Pasted image 20250408134533.png">
 
 
 > **Resolvemos los conflictos**
 
-> ![[Pasted image 20250408134606.png]]
+> <img src="imgs/Pasted image 20250408134606.png">
 >  
 
 > **Una vez resuelto los conflictos, realizamos el commit de fusión (manualmente)**
 
-> ![[Pasted image 20250408134837.png]]
+> <img src="imgs/Pasted image 20250408134837.png">
 
 
 
@@ -544,7 +545,7 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
 
 > **Creamos la rama `feature-3` y agregamos el commit**
 
-> ![[Pasted image 20250408141017.png]]
+> <img src="imgs/Pasted image 20250408141017.png">
 
 
 ```bash
@@ -552,7 +553,7 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
    git add version.txt
    git commit -m "Caracteristica 3 paso 2"
 ```
-> ![[Pasted image 20250408142227.png]]
+> <img src="imgs/Pasted image 20250408142227.png">
 
 
 ```shell
@@ -563,7 +564,7 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
 
 > **Procedemos a realizar el git squash con la rama `feature-3`, esto agrega los commits de esta rama en `main`, "aplastando" los commits de `feature-3` en un solo commit que se agregará a main.
 
-> ![[Pasted image 20250408143706.png]]
+> <img src="imgs/Pasted image 20250408143706.png">
 
 
 4. Compara el historial de Git:
@@ -572,20 +573,20 @@ Este ejercicio te permitirá observar las diferencias en el historial generado p
      ```bash
      git log --graph --oneline --merges --first-parent –branches
      ```
-> ![[Pasted image 20250408145339.png]]
+> <img src="imgs/Pasted image 20250408145339.png">
 
 
    - Historial Non-fast-forward:
      ```bash
      git log --graph --oneline –merges
      ```
-> ![[Pasted image 20250408145357.png]]
+> <img src="imgs/Pasted image 20250408145357.png">
 
    - Historial con Squash:
      ```bash
      git log --graph --oneline --merges --decorate --all
      ```
-> ![[Pasted image 20250408145435.png]]
+> <img src="imgs/Pasted image 20250408145435.png">
 
 
 **Preguntas:**
@@ -634,7 +635,7 @@ En este ejercicio, aprenderás cómo Git puede fusionar automáticamente cambios
 
 > **Vemos el historial una vez hecho los primeros commits del ejercicio**
 
-> ![[Pasted image 20250417162325.png]]
+> <img src="imgs/Pasted image 20250417162325.png">
 
 2. Crea una nueva rama auto-merge y realiza otro commit en file.txt:
    ```bash
@@ -646,7 +647,7 @@ En este ejercicio, aprenderás cómo Git puede fusionar automáticamente cambios
 
 > **Ahora hemos agregado un nuevo commit, esta vez en la rama `auto-merge`
 
-> ![[Pasted image 20250417162511.png]]
+> <img src="imgs/Pasted image 20250417162511.png">
 
 
 3. Vuelve a main y realiza cambios no conflictivos en otra parte del archivo:
@@ -656,7 +657,7 @@ En este ejercicio, aprenderás cómo Git puede fusionar automáticamente cambios
 
 > **Este es el historial cuando me posiciono nuevamente en la rama `main`
 
-> ![[Pasted image 20250417162715.png]]
+> <img src="imgs/Pasted image 20250417162715.png">
 
 ```sh
    echo "Footer: Fin del archivo" >> file.txt
@@ -666,7 +667,7 @@ En este ejercicio, aprenderás cómo Git puede fusionar automáticamente cambios
 
 > **Al agregar un nuevo cambio en la rama `main` vemos como se modifica el historial. Ya no es lineal, ahora existe una bifurcación ya hemos agregado un commit en `main`.
 
-> ![[Pasted image 20250417162840.png]]
+> <img src="imgs/Pasted image 20250417162840.png">
 
 4. Fusiona la rama auto-merge con main:
    ```bash
@@ -676,7 +677,7 @@ En este ejercicio, aprenderás cómo Git puede fusionar automáticamente cambios
 
 > **Una vez que ejecute el comando `git merge auto-merge`: Si hubo conflictos, ya que en la tercera línea para la rama `auto-merge` es "Linea 3", mientras que para la rama `main` es "Footer: fin del archivo". Resolví conflictos y luego aplique un commit.
 
-> ![[Pasted image 20250417163828.png]]
+> <img src="imgs/Pasted image 20250417163828.png">
 
 5. Git debería fusionar los cambios automáticamente sin conflictos.
 
@@ -695,7 +696,7 @@ En este ejercicio, aprenderás cómo Git puede fusionar automáticamente cambios
 
 > **Vemos que en efecto se realizo el revert en el commit `9c350c0`
 
-> ![[Pasted image 20250417164355.png]]
+> <img src="imgs/Pasted image 20250417164355.png">
 
 
 **Preguntas:**
