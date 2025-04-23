@@ -87,7 +87,7 @@ Sigue estos pasos para configurar el entorno y ejecutar el proyecto:
 
 Configuración inicial ✔️
 
-![[inicial-1.png]]
+<img src="imgs7/inicial-1.png">
 ### Ejecutar las pruebas
 
 Para ejecutar las pruebas, utiliza el comando:
@@ -100,7 +100,7 @@ Este comando buscará automáticamente los archivos `.feature` dentro de la carp
 
 Resultado:
 
-![[inicial-2.png]]
+<img src="imgs7/inicial-2.png">
 
 
 ### Detalles del proyecto
@@ -424,7 +424,7 @@ Para resolver el ejercicio simplemente tenemos que ampliar el patron de regex pa
 
 **Salida**
 
-![[ej-1.png]]
+<img src="imgs7/ej-1.png">
 
 -----
 
@@ -465,12 +465,12 @@ def step_given_eaten_cukes(context, cukes):
 
 2. **Implementa** 
 
-![[ej2-1.png]]
+<img src="imgs7/ej2-1.png">
 Se implemento el escenario ✔️
 
 3. **Valida**
 
-![[ej2-2.png]]
+<img src="imgs7/ej2-2.png">
 
 Vamos que se lanza una excepción si agrego un escenario donde se "come" una cantidad negativa de pepinos
 
@@ -501,7 +501,6 @@ def test_belly_comer_pepinos_negativos():
     assert str(error.value) == "La cantidad ingresada (negativa) no es válida."
 ```
 
-
 Estas son las pruebas unitarias creadas al termino de este ejercicio
 
 ---
@@ -526,6 +525,15 @@ Escenario: Esperar usando horas en inglés
   Entonces mi estómago debería gruñir
 ```
 
+
+---
+
+1. **Modifica**
+2. **Escribe**
+3. **Implementa**
+4. **En un pipeline DevOps**
+
+---
 
 #### Ejercicio 4: **Manejo de tiempos aleatorios**
 
@@ -632,6 +640,7 @@ def test_gruñir_si_comido_muchos_pepinos():
 ```
 
 **Ejemplo Gherkin** (BDD):
+
 ```gherkin
 Escenario: Comer muchos pepinos y esperar el tiempo suficiente
   Dado que he comido 15 pepinos
