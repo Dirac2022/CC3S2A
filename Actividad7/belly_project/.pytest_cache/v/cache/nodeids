@@ -1,0 +1,4 @@
+[
+  "test/test_belly.py::test_belly_comer_pepinos_fraccionarios",
+  "test/test_belly.py::test_belly_comer_pepinos_negativos"
+]

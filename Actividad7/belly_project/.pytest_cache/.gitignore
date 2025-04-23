@@ -1,0 +1,10 @@
+# Created by pytest automatically.
+
+# Entorno virtual
+act9/
+
+# Archivos de src
+src/__pycache__/
+
+# Archivos de Pytest
+__pycache__/
